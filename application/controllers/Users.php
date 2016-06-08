@@ -5,6 +5,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Users extends CI_Controller {
 
   public function register() {
+
     $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|min_length[3]');
     $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|min_length[3]');
     $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]');
@@ -13,43 +14,47 @@ class Users extends CI_Controller {
     $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|min_length[3]|matches[password]');
 
     if ($this->form_validation->run() == FALSE) {
+
       $data['main_view'] = 'users/register_view';
       $this->load->view('layouts/main' ,$data);
-    }
-    else
-    {
+
+    } else {
+
       if ($this->user_model->create_user()) {
         $this->session->set_flashdata('user_register', 'User has been registered.');
         redirect('home/index');
-      }
-      else
-      {
+
+      } else {
 
       }
 
     }
+
   }
 
   public function login() {
+
     $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]');
     $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]');
     $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|min_length[3]|matches[password]');
 
     if ($this->form_validation->run() == FALSE) {
+
       $data = array(
         'errors' => validation_errors()
       );
       $this->session->set_flashdata($data);
       redirect('home');
-    }
-    else
-    {
+
+    } else {
+
       $username = $this->input->post('username');
       $password = $this->input->post('password');
 
       $user_id = $this->user_model->login_user($username, $password);
 
       if ($user_id)
+
       {
         $user_data = array(
           'user_id' => $user_id,
@@ -64,17 +69,22 @@ class Users extends CI_Controller {
 
         $this->load->view('layouts/main', $data);
 
-      }
-      else
-      {
+      } else {
+
         $this->session->set_flashdata('login_failed', 'Sorry, you are not logged in.');
         redirect('home/index');
+
       }
+
     }
+
   }
 
   public function logout() {
+
     $this->session->sess_destroy();
     redirect('home/index');
+
   }
+
 }
