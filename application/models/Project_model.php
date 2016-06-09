@@ -2,19 +2,30 @@
 
 class Project_model extends CI_Model {
 
-  public function get_projects()
-  {
+  public function get_projects() {
+    $query = $this->db->get('projects');
+
+
+    return $query->result();
+
+  }
+
+  public function get_all_projects($user_id) {
+    
+    $this->db->where('project_user_id', $user_id);
     $query = $this->db->get('projects');
 
     return $query->result();
+
   }
 
-  public function get_project($id)
-  {
+  public function get_project($id) {
+
     $this->db->where('id', $id);
     $query = $this->db->get('projects');
 
     return $query->row();
+
   }
 
 
