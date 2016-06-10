@@ -1,5 +1,7 @@
 <p class="bg-success">
 
+<h1>Projects</h1>
+
 <?php
 
 if ($this->session->flashdata('login_success')) {
@@ -30,22 +32,26 @@ if ($this->session->flashdata('login_failed')) {
 
 </p>
 
-<table class="table table-hover">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>
         Project Name
       </th>
       <th>
-        Project Body
+        Project Description
+      </th>
+      <th>
+        Options
       </th>
     </tr>
   </thead>
   <tbody>
     <?php foreach($projects as $project): ?>
       <tr>
-        <?php echo "<td><a href='". base_url() ."projects/display/". $project->id ."'>".$project->project_name."</a></td>"; ?>
-        <?php echo "<td>".$project->project_body."</td>"; ?>
+        <?php echo "<td>$project->project_name</td>"; ?>
+        <?php echo "<td>$project->project_body</td>"; ?>
+        <td><a href="<?php echo base_url();?>/projects">View</a></td>
       </tr>
     <?php endforeach; ?>
   </tbody>
