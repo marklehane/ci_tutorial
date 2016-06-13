@@ -2,8 +2,7 @@
 
 class User_model extends CI_Model{
 
-  public function create_user()
-  {
+  public function create_user() {
 
     $options = ['cost' => 12];
 
@@ -22,10 +21,10 @@ class User_model extends CI_Model{
     $insert_data = $this->db->insert('users', $data);
 
     return $insert_data;
+
   }
 
-  public function login_user($username, $password)
-  {
+  public function login_user($username, $password) {
     $this->db->where('username', $username);
 
     $result = $this->db->get('users');
@@ -33,12 +32,16 @@ class User_model extends CI_Model{
     $db_password = $result->row(2)->password;
 
     if (password_verify($password, $db_password))
+
     {
       return $result->row(0)->id;
-    }
-    else
-    {
+
+    } else {
+
       return false;
+
     }
+
   }
+  
 }
