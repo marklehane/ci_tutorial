@@ -11,7 +11,7 @@ echo form_open('tasks/edit/'. $this->uri->segment(3) .'', $attributes);
 $data = array(
   'class' => 'form-control',
   'name' => 'task_name',
-  'placeholder' => 'Enter Task Name'
+  'value' => $the_task->task_name
 );
 
 echo "<div class='form-group'>";
@@ -21,7 +21,8 @@ echo "</div>";
 
 $data = array(
   'class' => 'form-control',
-  'name' => 'task_body'
+  'name' => 'task_body',
+  'value' => $the_task->task_body
 );
 
 echo "<div class='form-group'>";
