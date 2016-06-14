@@ -85,6 +85,22 @@ class Project_model extends CI_Model {
         
       $this->db->where('tasks.status', 0);
 
+    } else {
+
+      $this->db->where('task.status', 1);
+
+    }
+
+    $query = $this->db->get();
+
+    if ($query->num->rows() < 1) {
+      
+      return false;
+
+    } else {
+
+      return $query->result();
+
     }
 
   }
