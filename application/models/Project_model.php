@@ -93,7 +93,7 @@ class Project_model extends CI_Model {
 
     $query = $this->db->get();
 
-    if ($query->num->rows() < 1) {
+    if ($query->num_rows() < 1) {
       
       return false;
 

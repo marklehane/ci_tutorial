@@ -38,7 +38,7 @@ class Tasks extends CI_Controller {
         
         $this->session->set_flashdata('task_created', 'Your task has been created!');
 
-        redirect('projectsindex');
+        redirect('projects/index');
 
       }
 
