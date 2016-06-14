@@ -6,12 +6,7 @@ class Users extends CI_Controller {
 
   public function register() {
 
-    $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|min_length[3]');
-    $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|min_length[3]');
-    $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]');
-    $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]');
-    $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|min_length[3]|matches[password]');
+    $this->form_validation->set_rules($this->User_model->user_form_register);
 
     if ($this->form_validation->run() == FALSE) {
 
@@ -34,9 +29,7 @@ class Users extends CI_Controller {
 
   public function login() {
 
-    $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]');
-    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]');
-    $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|min_length[3]|matches[password]');
+    $this->form_validation->set_rules($this->User_model->user_form_login);
 
     if ($this->form_validation->run() == FALSE) {
 
@@ -48,17 +41,14 @@ class Users extends CI_Controller {
 
     } else {
 
-      $username = $this->input->post('username');
-      $password = $this->input->post('password');
+      $result = $this->user_model->login_user();
 
-      $user_id = $this->user_model->login_user($username, $password);
-
-      if ($user_id)
+      if ($result)
 
       {
         $user_data = array(
-          'user_id' => $user_id,
-          'username' => $username,
+          'user_id' => $result->id,
+          'username' => $result->username,
           'logged_in' => true
         );
 

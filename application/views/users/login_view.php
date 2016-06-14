@@ -1,81 +1,39 @@
-<?php
+  <?php if ($this->session->userdata('logged_in')): ?> // the controller controls with views are loaded. This doesnt belong here.
+                                                      // this file really needs to be split  in 2 separate files/forms and loaded appropiately from
+                                                      // the controller. but hey ho...
 
-if ($this->session->userdata('logged_in')) {
+ <h2>Logout</h2>
+ <?php echo form_open('users/logout'); ?>
+ <?php if ($this->session->userdata('username')): ?>
+  
+  <p>You are logged in as "  <?php echo $this->session->userdata('username') ?>"</p>
+  <?php echo form_submit('submit', 'Logout', array('class'=>'btn btn-primary')); ?>
+  <?php echo form_close(); ?>
 
-  echo "<h2>Logout</h2>";
-  echo form_open('users/logout');
+  <?php else: ?>
 
-  if ($this->session->userdata('username'))
-  {
-    echo "<p>You are logged in as " . $this->session->userdata('username')."</p>";
-  }
 
-  $data = array(
-    'class' => 'btn btn-primary',
-    'name' => 'submit',
-    'value' => 'Logout'
-  );
-  echo form_submit($data);
-  echo form_close();
-}
-else
-{
+  <h2>Login Form</h2>
+  <?php echo $this->session->flashdata('errors') ? $this->session->flashdata('errors') : "" ; ?>
+  <?php echo form_open('users/login', array('id' => 'login_form' ,'class' => 'form-horizontal')); ?>
 
-  echo "<h2>Login Form</h2>";
+  <div class="form-group">
+  <?php echo form_label('Username', 'username'); ?>
+  <?php echo form_input('username', set_value('username'), array('class'=>'form-control', 'placeholder'=>'Enter Username')); ?>
+  </div>
 
-  $attributes = array('id' => 'login_form' , 'class' => 'form-horizontal');
+  <div class="form-group">
+  <?php echo form_label('Password', 'password'); ?>
+  <?php echo form_password('password', '', array('class'=>'form-control')); ?>
+  </div>
 
-  if ($this->session->flashdata('errors')) {
-    echo $this->session->flashdata('errors');
-  }
+  <div class="form-group">
+  <?php echo form_label('Confirm Password', 'confirm_password'); ?>
+  <?php echo form_password('confirm_password', '', array('class'=>'form_control')); ?>
+  </div>
 
-  echo form_open('users/login', $attributes);
-
-  $data = array(
-    'class' => 'form-control',
-    'name' => 'username',
-    'placeholder' => 'Enter Username'
-  );
-
-  echo "<div class='form-group'>";
-    echo form_label('Username');
-    echo form_input($data);
-  echo "</div>";
-
-  $data = array(
-    'class' => 'form-control',
-    'name' => 'password',
-    'placeholder' => 'Enter Password'
-  );
-
-  echo "<div class='form-group'>";
-    echo form_label('Password');
-    echo form_password($data);
-  echo "</div>";
-
-  $data = array(
-    'class' => 'form-control',
-    'name' => 'confirm_password',
-    'placeholder' => 'Confirm Password'
-  );
-
-  echo "<div class='form-group'>";
-    echo form_label('Confirm Password');
-    echo form_password($data);
-  echo "</div>";
-
-  $data = array(
-    'class' => 'btn btn-primary',
-    'name' => 'submit',
-    'value' => 'Login'
-  );
-
-  echo "<div class='form-group'>";
-    echo form_submit($data);
-  echo "</div>";
-
-  echo form_close();
-
-}
-
-?>
+  <button type="submit" class="btn btn-primary" name="submit">Login</button>
+  <?php // if your using bootstrap, the above allows you to use glypicons etc ?>
+  <?php echo form_close(); ?>
+  <?php endif; ?>
+  
