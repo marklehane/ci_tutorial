@@ -52,7 +52,7 @@ class Project_model extends CI_Model {
     $this->db->where('id', $project_id);
     $this->db->delete('projects');
 
-    // return ;
+    return true;
 
   }
 
@@ -65,4 +65,29 @@ class Project_model extends CI_Model {
 
   }
 
+  public function get_project_tasks($project_id, $active = true) {
+    
+    $this->db->select('
+
+      tasks.task_name,
+      tasks.task_body,
+      tasks.id as task_id,
+      projects.project_name,
+      projects.project_body
+
+      ');
+
+    $this->db->from('tasks');
+    $this->db->join('projects', 'projects.id = tasks.project_id');
+    $this->db->where('tasks.project_id', $project_id);
+
+    if ($active = true) {
+        
+      $this->db->where('tasks.status', 0);
+
+    }
+
+  }
+
 }
+
