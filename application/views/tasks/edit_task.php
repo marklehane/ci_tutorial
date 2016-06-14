@@ -33,7 +33,8 @@ echo "</div>";
 $data = array(
   'class' => 'form-control',
   'name' => 'date_due',
-  'type' => 'date'
+  'type' => 'date',
+  'value' => $the_task->date_due
 );
 
 echo "<div class='form-group'>";

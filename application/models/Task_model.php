@@ -25,7 +25,7 @@ class Task_model extends CI_Model {
 		$this->db->where('id', $task_id);
 		$query = $this->db->get('tasks');
 
-		return $query->row()->id;
+		return $query->row()->project_id;
 
 	}
 
@@ -44,6 +44,16 @@ class Task_model extends CI_Model {
 		$query = $this->db->get('tasks');
 
 		return $query->row();
+
+	}
+
+	public function edit_task($task_id, $data) {
+
+		$this->db->where('id', $task_id);
+
+		$this->db->update('tasks', $data);
+
+		return true;
 
 	}
 
