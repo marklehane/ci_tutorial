@@ -97,6 +97,20 @@ class Tasks extends CI_Controller {
 
   }
 
+  function mark_complete($task_id) {
+  	
+  	if ($this->task_model->mark_complete($task_id)) {
+  		
+  		$project_id = $this->task_model->get_task_project_id($task_id);
+
+  		$this->session->set_flashdata('mark_done', 'This task has been completed.');
+
+  		redirect('projects/display/'. $project_id .'');
+
+  	} 
+
+  }
+
 
 }
 
