@@ -1,37 +1,29 @@
-<h1>Display Tasks</h1>
+<div class="col-xs-9">
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>
-        Task Name
-      </th>
-      <th>
-        Task Description
-      </th>
-      <th>
-        Data Created
-      </th>
-      <th colspan="2">
-        Options
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-	  <tr>
-	  	<td>
-	  		<div class="task-name">
-	    		<?php echo $task->task_name; ?>
-			</div>
-			<div class="task-actions">
-	    		<a href="<?php echo base_url(); ?>tasks/edit/<?php echo $task->id ?>">Edit</a>
-	    		<a href="<?php echo base_url(); ?>tasks/delete/<?php echo $task->project_id ?>/<?php echo $task->id ?>">Delete</a>
-			</div>
-		</td>
-	    <?php echo "<td>$task->task_body</td>"; ?>
-	    <?php echo "<td>$task->date_created</td>"; ?>
-	    <td><a href="<?php echo base_url(); ?>tasks/mark_complete/<?php echo $task->id; ?>">Mark Complete</a></td>
-	    <td><a href="<?php echo base_url(); ?>tasks/mark_active/<?php echo $task->id; ?>">Mark Active</a></td>
-	  </tr>
-  </tbody>
-</table>
+	<h1><?php echo $task->task_name; ?></h1>
+
+	<p>Project Name: <?php echo $project_name; ?></p>
+	<p>Created: <?php echo $task->date_created; ?></p>
+	<p>Due: <?php echo $task->date_due; ?></p>
+
+	<h4>Description</h4>
+
+	<p class="task-description">
+		
+		<?php echo $task->task_body; ?>
+
+	</p>
+
+
+
+</div>
+
+<div class="col-xs-3 pull-right">
+  <ul class="list-group">
+    <h4>Task Actions</h4>
+    <li class="list-group-item"><a href="<?php echo base_url(); ?>tasks/edit/<?php echo $task->id ?>">Edit</a></li>
+    <li class="list-group-item"><a href="<?php echo base_url(); ?>tasks/delete/<?php echo $task->project_id ?>/<?php echo $task->id ?>">Delete</a></li>
+    <li class="list-group-item"><a href="<?php echo base_url(); ?>tasks/mark_complete/<?php echo $task->id; ?>">Mark Complete</a></li>
+    <li class="list-group-item"><a href="<?php echo base_url(); ?>tasks/mark_active/<?php echo $task->id; ?>">Mark Active</a></li>
+  </ul>
+</div>

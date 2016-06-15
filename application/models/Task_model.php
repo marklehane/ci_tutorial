@@ -44,7 +44,7 @@ class Task_model extends CI_Model {
 		$this->db->where('id', $project_id);
 		$query = $this->db->get('projects');
 
-		return $query->row();
+		return $query->row()->project_name;
 
 	}
 
