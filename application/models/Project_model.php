@@ -81,13 +81,13 @@ class Project_model extends CI_Model {
     $this->db->join('projects', 'projects.id = tasks.project_id');
     $this->db->where('tasks.project_id', $project_id);
 
-    if ($active = true) {
+    if ($active == true) {
         
       $this->db->where('tasks.status', 0);
 
     } else {
 
-      $this->db->where('task.status', 1);
+      $this->db->where('tasks.status', 1);
 
     }
 
@@ -102,6 +102,15 @@ class Project_model extends CI_Model {
       return $query->result();
 
     }
+
+  }
+
+  public function delete_project_tasks($project_id) {
+    
+    $this->db->where('project_id', $project_id);
+    $query = $this->db->delete('tasks');
+
+    return $query;
 
   }
 

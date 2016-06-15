@@ -7,7 +7,32 @@
 
   <p><?php echo $project_data->project_body; ?></p>
 
-  <h3>Tasks</h3>
+  <h3>Active Tasks</h3>
+  
+    <ul>
+
+    <?php if($active_tasks): ?>
+
+      <?php foreach($active_tasks as $task): ?>
+
+        <li>
+          <a href="<?php echo base_url(); ?>tasks/display/<?php echo $task->task_id; ?>">
+
+          <?php echo $task->task_name; ?>
+
+          </a>
+        </li>
+      <?php endforeach; ?>
+
+    <?php else: ?>
+
+      <p>You have no active tasks</p>
+
+    <?php endif; ?>
+
+  </ul>
+
+  <h3>Completed Tasks</h3>
 
   <ul>
 
@@ -26,7 +51,7 @@
 
     <?php else: ?>
 
-      <p>You have no pending tasks</p>
+      <p>You have no completed tasks</p>
 
     <?php endif; ?>
 

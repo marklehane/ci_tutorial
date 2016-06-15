@@ -57,7 +57,7 @@ if ($this->session->flashdata('login_failed')) {
 	      <tr>
 	        <?php echo "<td>$project->project_name</td>"; ?>
 	        <?php echo "<td>$project->project_body</td>"; ?>
-	        <td><a href="<?php echo base_url();?>/projects">View</a></td>
+	        <td><a href="<?php echo base_url();?>projects/display/<?php echo $project->id; ?>">View</a></td>
 	      </tr>
 	    <?php endforeach; ?>
 	  </tbody>
