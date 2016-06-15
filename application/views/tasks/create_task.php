@@ -53,3 +53,8 @@ echo form_close();
 
 
 ?>
+
+<script> 
+  webshims.setOptions('form-ext', {types: 'date'});
+  webshims.polyfill('forms forms-ext');
+</script>

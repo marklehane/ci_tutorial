@@ -1,3 +1,26 @@
+<?php 
+
+  $home = "";
+  $projects = "";
+  $register = "";
+
+  if ($this->uri->segment(1) == 'projects') {
+    
+    $projects = "active";
+
+  } else if ($this->uri->segment(2) == 'register') {
+    
+    $register = "active";
+
+  } else {
+
+    $home = "active";
+
+  }
+
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,6 +30,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
     <script src="<?php echo base_url();?>assets/js/jquery.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/polyfiller.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse">
@@ -23,9 +47,9 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo base_url();?>">Home<span class="sr-only">(current)</span></a></li>
-            <li><a href="<?php echo base_url();?>projects">Projects<span class="sr-only">(current)</span></a></li>
-            <li><a href="<?php echo base_url();?>users/register">Register<span class="sr-only">(current)</span></a></li>
+            <li class="<?php echo $home; ?>"><a href="<?php echo base_url();?>">Home<span class="sr-only">(current)</span></a></li>
+            <li class="<?php echo $projects; ?>"><a href="<?php echo base_url();?>projects">Projects<span class="sr-only">(current)</span></a></li>
+            <li class="<?php echo $register; ?>"><a href="<?php echo base_url();?>users/register">Register<span class="sr-only">(current)</span></a></li>
           </ul>
           <?php if($this->session->userdata('logged_in')): ?>
           <ul class="nav navbar-nav navbar-right">

@@ -11,7 +11,8 @@ echo form_open('users/register', $attributes);
 $data = array(
   'class' => 'form-control',
   'name' => 'username',
-  'placeholder' => 'Enter Username'
+  'placeholder' => 'Enter Username',
+  'value' => set_value('username')
 );
 
 echo "<div class='form-group'>";
@@ -22,7 +23,8 @@ echo "</div>";
 $data = array(
   'class' => 'form-control',
   'name' => 'first_name',
-  'placeholder' => 'Enter First Name'
+  'placeholder' => 'Enter First Name',
+  'value' => set_value('first_name')
 );
 
 echo "<div class='form-group'>";
@@ -33,7 +35,8 @@ echo "</div>";
 $data = array(
   'class' => 'form-control',
   'name' => 'last_name',
-  'placeholder' => 'Enter Last Name'
+  'placeholder' => 'Enter Last Name',
+  'value' => set_value('last_name')
 );
 
 echo "<div class='form-group'>";
@@ -44,7 +47,8 @@ echo "</div>";
 $data = array(
   'class' => 'form-control',
   'name' => 'email',
-  'placeholder' => 'Enter Email'
+  'placeholder' => 'Enter Email',
+  'value' => set_value('email')
 );
 
 echo "<div class='form-group'>";
