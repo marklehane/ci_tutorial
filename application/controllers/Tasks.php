@@ -103,7 +103,21 @@ class Tasks extends CI_Controller {
   		
   		$project_id = $this->task_model->get_task_project_id($task_id);
 
-  		$this->session->set_flashdata('mark_done', 'This task has been completed.');
+  		$this->session->set_flashdata('mark_complete', 'This task has been completed.');
+
+  		redirect('projects/display/'. $project_id .'');
+
+  	} 
+
+  }
+
+    function mark_active($task_id) {
+  	
+  	if ($this->task_model->mark_active($task_id)) {
+  		
+  		$project_id = $this->task_model->get_task_project_id($task_id);
+
+  		$this->session->set_flashdata('mark_active', 'This task is active.');
 
   		redirect('projects/display/'. $project_id .'');
 

@@ -31,7 +31,7 @@
 	    <?php echo "<td>$task->task_body</td>"; ?>
 	    <?php echo "<td>$task->date_created</td>"; ?>
 	    <td><a href="<?php echo base_url(); ?>tasks/mark_complete/<?php echo $task->id; ?>">Mark Complete</a></td>
-	    <td><a href="">Mark Incomplete</a></td>
+	    <td><a href="<?php echo base_url(); ?>tasks/mark_active/<?php echo $task->id; ?>">Mark Active</a></td>
 	  </tr>
   </tbody>
 </table>

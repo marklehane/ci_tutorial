@@ -1,5 +1,22 @@
 <div class="col-xs-9">
 
+  <p class="bg-success">
+    <?php 
+    if ($this->session->flashdata('mark_complete')) {
+      echo $this->session->flashdata('mark_complete');
+    }
+    ?>  
+  </p>
+  
+  <p class="bg-success">
+    <?php 
+    if ($this->session->flashdata('mark_active')) {
+      echo $this->session->flashdata('mark_active');
+    }
+    ?>  
+  </p>
+
+
   <h1>Project Name:<?php echo $project_data->project_name; ?></h1>
   <p>Date Created:<?php echo $project_data->date_created; ?></p>
 
